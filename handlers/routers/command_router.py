@@ -1,6 +1,5 @@
 from aiogram import Router
 from aiogram.filters import Command
-from aiogram.fsm.context import FSMContext
 from aiogram.types import Message, ReplyKeyboardRemove
 
 import text as text
@@ -10,9 +9,8 @@ router = Router()
 
 
 @router.message(Command("start"))
-async def start_handler(msg: Message, state: FSMContext) -> None:
+async def start_handler(msg: Message) -> None:
     """Обработка команды start"""
-    # await state.set_state(UserState.currency)
     await msg.answer(
         text.start.format(name=msg.from_user.full_name),
         reply_markup=ReplyKeyboardRemove(),
@@ -20,12 +18,12 @@ async def start_handler(msg: Message, state: FSMContext) -> None:
 
 
 @router.message(Command("help"))
-async def get_menu(msg: Message) -> None:
-    """Обработка команды menu"""
+async def get_help(msg: Message) -> None:
+    """Обработка команды help"""
     await msg.answer(text.help, reply_markup=ReplyKeyboardRemove())
 
 
 @router.message(Command("convert"))
-async def cancel_handler(msg: Message) -> None:
-    """Обработка команды cancel"""
+async def get_convert(msg: Message) -> None:
+    """Обработка команды convert"""
     await msg.answer(text.convert, reply_markup=currency_button())

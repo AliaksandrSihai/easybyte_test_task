@@ -21,3 +21,4 @@ async def get_currency(msg: Message, state: FSMContext) -> None:
     await msg.answer(
         f"Актуальная конвертация {result.get('amount')} {result.get('currency')} на данный момент равна :\n{formatted_text}"
     )
+    await state.clear()
